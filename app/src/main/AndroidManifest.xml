@@ -17,6 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ContactList">
 
+        <!-- Google Maps API Key Meta-data -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -26,13 +31,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".DetailActivity"
-            android:exported="false"
-            android:label="@string/title_contact_detail"
-            android:parentActivityName=".MainActivity"
-            android:windowSoftInputMode="adjustResize" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

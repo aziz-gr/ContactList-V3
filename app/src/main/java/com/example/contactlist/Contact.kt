@@ -10,11 +10,17 @@ data class Contact(
     var telephone: String,
     var email: String,
     var photoUri: String? = null,
-    var photoResId: Int? = null
+    var photoResId: Int? = null,
+    var latitude: Double? = null,
+    var longitude: Double? = null
 ) : Parcelable {
 
     val fullName: String
         get() = "$prenom $nom".trim()
+
+    val hasValidCoordinates: Boolean
+        get() = latitude != null && longitude != null &&
+                latitude!! in -90.0..90.0 && longitude!! in -180.0..180.0
 
     constructor(parcel: Parcel) : this(
         id = parcel.readString() ?: "",
@@ -23,7 +29,9 @@ data class Contact(
         telephone = parcel.readString() ?: "",
         email = parcel.readString() ?: "",
         photoUri = parcel.readString(),
-        photoResId = parcel.readValue(Int::class.java.classLoader) as? Int
+        photoResId = parcel.readValue(Int::class.java.classLoader) as? Int,
+        latitude = parcel.readValue(Double::class.java.classLoader) as? Double,
+        longitude = parcel.readValue(Double::class.java.classLoader) as? Double
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -34,6 +42,8 @@ data class Contact(
         parcel.writeString(email)
         parcel.writeString(photoUri)
         parcel.writeValue(photoResId)
+        parcel.writeValue(latitude)
+        parcel.writeValue(longitude)
     }
 
     override fun describeContents(): Int = 0

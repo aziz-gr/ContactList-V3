@@ -5,12 +5,11 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <!-- Header / App Bar -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.ContactList">
@@ -25,62 +24,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/primary_light"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="10dp">
-
-        <TextView
-            android:id="@+id/tvContactCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/primary_dark"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            tools:text="6 contacts enregistrés" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ListView
-            android:id="@+id/listViewContacts"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:paddingVertical="8dp"
-            tools:listitem="@layout/item_contact" />
-
-        <LinearLayout
-            android:id="@+id/emptyView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:visibility="gone">
-
-            <ImageView
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:contentDescription="@null"
-                app:srcCompat="@drawable/ic_avatar_placeholder"
-                app:tint="@color/text_secondary" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:text="@string/msg_no_contacts"
-                android:textColor="@color/text_secondary"
-                android:textSize="16sp" />
-        </LinearLayout>
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>
